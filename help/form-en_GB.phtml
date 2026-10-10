@@ -15,12 +15,39 @@
     <div class="g-help-screen g-help-screen--hidable">
         <img src="<?= $assetsUrl, '/help/form.png' ?>" />
     </div>
-    <p>The form appears after clicking the <b>"Add"</b> button on the IP address list toolbar or selecting the <b>"Edit"</b> item from the context menu of the selected entry.</p>
+    <p>The form appears after clicking the <b>"Add"</b> button on the <a href="<?= $url('grid') ?>">IP address list</a> toolbar or selecting the <b>"Edit"</b> item from the context menu of the selected entry.</p>
     <h2>Form fields</h2>
     <ul class="g-help-list">
-        <li><b>IP address / Mask.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Description.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>IP address available for Control panel.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>IP address available for the site.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>IP address / Mask.</b> The user's IP address or IP address mask.<br>
+        An IP address mask (subnet mask) defines a range of addresses considered "local" to the network and helps determine which IPs fall under the access rule.<br>
+        Masks are used in two main ways:
+        <ul>
+            <li><b>A single specific IP.</b><br>
+            Specify the address with a /32 mask (for IPv4, this is 255.255.255.255).<br>
+            Example: 192.0.2.10/32. Access is allowed only from this address. 
+            </li>
+            <li><b>An entire IP range.</b><br>
+                Specify the subnet with the appropriate mask.<br>
+                Example:
+                <ul>
+                    <li>192.0.2.0/24. Access is allowed for all addresses from 192.0.2.1 to 192.0.2.254;</li>
+                    <li>192.0.0.*. Access is allowed for all addresses from 192.0.0.0 to 192.0.0.255;</li>
+                    <li>192.0.*.*. Access is permitted for all addresses from 192.0.0.0 to 192.0.255.255.</li>
+                </ul>
+                <u>Notation formats</u><br>
+                CIDR notation (using a slash) is most commonly used:
+                <ul>
+                    <li>/24 → mask 255.255.255.0 (256 addresses, usually 254 usable).</li>
+                    <li>/30 → mask 255.255.255.252 (4 addresses, 2 usable).</li>
+                    <li>/32 → mask 255.255.255.255 (exactly one address).</li>
+                </ul>
+                The higher the number after the slash, the fewer addresses there are in the range. 
+            </li>
+        </ul>
+        </li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Description.</b> A description (comment) for the IP address or mask being added;</li>
+        <li><u>IP address accessible for:</u></li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>control panel.</b> If this flag is set, access to the Control Panel will be restricted to the specified IP address or mask;</li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>website.</b> If this flag is set, access to the website will be restricted to the specified IP address or mask.</li>
     </ul>
 </article>

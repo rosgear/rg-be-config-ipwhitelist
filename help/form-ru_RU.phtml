@@ -15,12 +15,39 @@
     <div class="g-help-screen g-help-screen--hidable">
         <img src="<?= $assetsUrl, '/help/form.png' ?>" />
     </div>
-    <p>Форма появляется после нажатия на кнопку <b>"Добавить"</b> панели инструментов списка IP-адресов или выбора пункта <b>"Редактировать"</b> контекстного меню выбранной записи.</p>
+    <p>Форма появляется после нажатия на кнопку <b>"Добавить"</b> панели инструментов <a href="<?= $url('grid') ?>">списка IP-адресов</a> или выбора пункта <b>"Редактировать"</b> контекстного меню выбранной записи.</p>
     <h2>Поля формы</h2>
     <ul class="g-help-list">
-        <li><b>IP-адрес / Маска.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>Описание.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>IP-адрес доступен для Панели управления.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
-        <li><b>IP-адрес доступен для Сайта.</b> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua;</li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>IP-адрес / Маска.</b> IP-адрес или маска IP-адреса пользователя.<br>
+        Маска IP-адреса (маска подсети) задаёт диапазон адресов, которые считаются «своими» в сети, и помогает определить, какие IP попадают под правило доступа.<br>
+        Маску применяют двумя основными способами:
+            <ul>
+                <li><b>Один конкретный IP.</b><br>
+                    Указывают адрес с маской /32 (для IPv4 это 255.255.255.255).<br>
+                    Пример: 192.0.2.10/32. Разрешён доступ только с этого адреса.
+                </li>
+                <li><b>Целый диапазон IP.</b><br>
+                    Указывают подсеть с подходящей маской.<br>
+                    Пример:
+                    <ul>
+                        <li>192.0.2.0/24. Доступ разрешён для всех адресов от 192.0.2.1 до 192.0.2.254;</li>
+                        <li>192.0.0.*. Доступ разрешён для всех адресов от 192.0.0.0 до 192.0.0.255;</li>
+                        <li>192.0.*.*. Доступ разрешён для всех адресов от 192.0.0.0 до 192.0.255.255.</li>
+                    </ul>
+                    <u>Форматы записи</u><br>
+                    Чаще всего используют CIDR-запись (через слэш):
+                    <ul>
+                        <li>/24 → маска 255.255.255.0 (256 адресов, обычно 254 рабочих).</li>
+                        <li>/30 → маска 255.255.255.252 (4 адреса, 2 рабочих).</li>
+                        <li>/32 → маска 255.255.255.255 (ровно один адрес).</li>
+                    </ul>
+                    Чем больше число после слэша, тем меньше адресов в диапазоне.
+                </li>
+            </ul>
+        </li>
+        <li><span class="g-help-fld g-help-fld_text"></span> <b>Описание.</b> Описание (комментарий) к добавляемому IP-адресу или маске;</li>
+        <li><u>IP-адрес доступен для:</u></li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>панели управления.</b> Если данный флаг установлен, то доступ к Панели управления будет только по указанному IP-адресу или маске;</li>
+        <li><span class="g-help-fld g-help-fld_checkbox"></span> <b>сайта.</b> Если данный флаг установлен, то доступ к сайту будет только по указанному IP-адресу или маске.</li>
     </ul>
 </article>
